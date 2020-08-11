@@ -68,7 +68,8 @@
                                     </form>
                                     <a class="dropdown-item" href="{{ route('auth.editprofile')  }}">My profile</a>
                                     @can('manage-users')
-                                   <a class="dropdown-item" href="{{ route('admin.users.index') }}">Admin</a>
+                                   <a class="dropdown-item" href="{{ route('admin.users.index') }}">Manage users</a>
+                                   
                                    @endcan
                                 </div>
                             </li>
@@ -81,6 +82,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
 </body>
 </html>
+

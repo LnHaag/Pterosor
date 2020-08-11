@@ -135,4 +135,6 @@
         </div>
     </div>
 </div>
+<div class="app"></div>
+
 @endsection
