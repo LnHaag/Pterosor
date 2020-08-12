@@ -21,10 +21,10 @@ class UsersController extends Controller
     }
     public function index()
     {
-        /* if(Gate::denies('edit-users'))
+         if(Gate::denies('edit-users'))
         {
             return view ('welcome');
-        } */
+        }  
         $users=User::all();
         return view ('admin.users.index')->with ('users',$users);
     }
@@ -69,10 +69,10 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        if(Gate::denies('edit-users'))
+            if(Gate::denies('edit-users'))
         {
             return view ('welcome');
-        } 
+        }   
         $roles=Role::all();
         return view ('admin.users.edit', [
             'user'=>$user,
@@ -90,7 +90,9 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $user->roles()->sync($request->roles);
+        $request->session()->flash('success','Change in role successful!');
         return redirect()->route('admin.users.index');
+
     }
 
     /**
@@ -104,7 +106,7 @@ class UsersController extends Controller
         if(Gate::denies('delete-users'))
         {
             return view ('welcome');
-        } 
+        }  
         $user->roles()->detach();
         $user->delete();
         return redirect()->route('admin.users.index');

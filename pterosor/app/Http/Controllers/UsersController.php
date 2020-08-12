@@ -31,14 +31,13 @@ class UsersController extends Controller
 
     public function update(Request $request ,User $user)
     {
-        //$user=User::find(Auth::user()->id);
-    //dd($request->name);
-    //dd($request->firstname);
+        $user=User::find(Auth::user()->id);
+        
         /* if($user)
         
         {
-           */  //$validate=null;
-            /* if (Auth::user()->email===$request['email'])
+           $validate=null;
+            if (Auth::user()->email===$request['email'])
             {
                 $validate=$request->validate([
                     'name' => ['required', 'string', 'max:50'],
@@ -51,40 +50,40 @@ class UsersController extends Controller
                     ]);
             }
             else
-            { */
-               /*  $validate=$request->validate([
+            { 
+                $validate=$request->validate([
                 'name' => ['required', 'string', 'max:50'],
-                'email' => ['required', 'string', 'email', 'max:255',],
+                'email' => ['required', 'string', 'email', 'max:255','unique:user'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'firstname' =>['required','string','max:60'],
                 'country'=>['nullable','string','max:60'],
                 'organization'=>['nullable','string','max:250'],
                 'webpage' =>['nullable','string','max:70']
-                    ]); */
-            //}
+                    ]); 
+            }
 
-            /* if ($validate)
+             if ($validate)
         
-            {  */
+            {   */
                 $user->name=$request['name'];
                 $user->firstname=$request['firstname'];
                 $user->email=$request['email'];
-                $user->organization=$request->organization;
-                $user->country=$request->country;
-                $user->webpage=$request->webpage;
-                
-                $user->save();
+                $user->organization=$request['organization'];
+                $user->country=$request['country'];
+                $user->webpage=$request['webpage'];
+                //dd($request);
+                $user->update();
                 $request->session()->flash('success','Your details have been updated!');
                 return view('auth.editprofile'); 
-        /*      }
-            else
+       /*        }
+         else
             {
                 return redirect()->back();
-            }
-        }
+            } */
+       /*  }
         else
         {
             return redirect()->back();
-        } */
+        }  */
     }
 }

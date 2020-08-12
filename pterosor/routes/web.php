@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
@@ -23,10 +23,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('people','PeopleController');
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::resource('users','UsersController');
+    Route::resource('people','PeopleController');
 });
 
 Route::get('/edit/user','UsersController@edit')->name('auth.editprofile');
 
 Route::post('/upload/user', 'UsersController@update')->name('auth.updateprofile');
+
