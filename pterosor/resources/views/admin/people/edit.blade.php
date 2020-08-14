@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('update') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{  route('admin.people.update', $person)  }}">
+                    <form method="POST" action="{{  route('admin.people.update', $person)  }}" enctype="multipart/form-data" >
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">
@@ -85,7 +85,7 @@
                             <label for="picture" class="col-md-4 col-form-label text-md-right">{{ __('picture') }}</label>
 
                             <div class="col-md-6">
-                                <input id="picture" type="text" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ old('picture') ?? $person->picture }}" autocomplete="picture" autofocus>
+                                <input id="picture" type="file" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ old('picture') ?? $person->picture }}" autocomplete="picture" autofocus>
 
                                 @error('picture')
                                     <span class="invalid-feedback" role="alert">

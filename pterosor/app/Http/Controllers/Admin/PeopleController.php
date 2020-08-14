@@ -5,6 +5,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\People;
 use APP\Http\Requests\PeopleStore;
+use Image;
 
 class PeopleController extends Controller
 {
@@ -53,7 +54,11 @@ class PeopleController extends Controller
         $person->email=$validated['email'];
         $person->bio=$validated['bio'];
         $person->personnalpage=$validated['personnalpage'];
-        $person->picture=$validated['picture'];
+        $picture=$request->file('picture');
+        $nom = $picture->getClientOriginalExtension();
+        Image::make($picture)->resize(200,110)->save(public_path("/storage/Uploads/".$name));
+        $ads->picture=$name;
+        $ads->save();
     
         $person->save();
 ;
@@ -98,6 +103,10 @@ class PeopleController extends Controller
         $person->bio=$request['bio'];
         $person->personnalpage=$request['personnalpage'];
         $person->picture=$request['picture'];
+        $picture=$request->file('picture');
+        $nom = $picture->getClientOriginalExtension();
+        Image::make($picture)->resize(200,110)->save(public_path("/storage/Uploads/".$name));
+        $person->picture=$name;
         //dd($request);
         $person->save();
         $request->session()->flash('success','Your details have been updated!');

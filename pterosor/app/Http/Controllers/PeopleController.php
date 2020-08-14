@@ -13,14 +13,23 @@ class PeopleController extends Controller
         return $people->toJson(JSON_PRETTY_PRINT);
     }
 
+    public function welcome()
+    {
+        $people=People::all();
+        ;return view('welcome')->withPeople($people);
+    }
+
     public function store( Request $request)
     {
         People::create($request->all());
     }
 
-    public function show(People $people)
+    public function show($id)
     {
-        return $people;
+        $person = People::where('people.id',$id)->get()->first();
+        
+    $response =  $person;
+    return response()->json($response);return $person;
     }
 
     public function update(Request $request, People $people)
