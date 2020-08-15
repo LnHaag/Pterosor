@@ -1929,6 +1929,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1990,12 +1991,10 @@ __webpack_require__.r(__webpack_exports__);
 
     fetch('https://api.archives-ouvertes.fr/search/?q=europeanProject_t:pterosor&indent=true&fl=label_s,arxivId_s,files_s,title_s,author_s,authFullName_s,journal_s,label_bibtex,doiId_s,publicationDateY_i,publicationDate_tdate&group=false&start=0&rows=10000&fq=docType_s:(ART+OR+COMM+OR+OUV+OR+COUV+OR+DOUV+OR+OTHER+OR+UNDEFINED+OR+REPORT+OR+THESE+OR+HDR)&sort=publicationDate_tdate%20desc').then(function (response) {
       return response.json();
-    }).then(function (resjson) {
-      console.log(resjson);
-      _this.publications = resjson.data;
-    })["catch"](function (err) {
-      return console.error(err);
+    }).then(function (response) {
+      return _this.publications = response.data;
     });
+    console.log(this.publications);
   }
 });
 
@@ -2040,10 +2039,16 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    //var header = {headers:{ 'Access-Control-Allow-Origin': '*', "Content-Type": "application/json"} };
-    axios.get('https://api.archives-ouvertes.fr/search/?q=europeanProject_t:pterosor&indent=true&fl=label_s,arxivId_s,files_s,title_s,author_s,authFullName_s,journal_s,label_bibtex,doiId_s,publicationDateY_i,publicationDate_tdate&group=false&start=0&rows=10000&fq=docType_s:(ART+OR+COMM+OR+OUV+OR+COUV+OR+DOUV+OR+OTHER+OR+UNDEFINED+OR+REPORT+OR+THESE+OR+HDR)&sort=publicationDate_tdate%20desc').then(function (response) {
+    fetch('https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos', {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    }).then(function (response) {
+      return response.json();
+    }).then(function (response) {
       return _this.softwares = response.data;
     });
+    console.log(this.softwares);
   }
 });
 
@@ -38473,7 +38478,11 @@ var render = function() {
     _c("br"),
     _c("br"),
     _vm._v(" "),
-    _c("h5", [_vm._v(" " + _vm._s(_vm.people.bio))])
+    _c("h5", [_vm._v(" " + _vm._s(_vm.people.bio))]),
+    _vm._v(" "),
+    _c("img", {
+      attrs: { src: "/home/ln/Pterosor/pterosor/public/storage/people.picture" }
+    })
   ])
 }
 var staticRenderFns = []
@@ -38548,12 +38557,16 @@ var render = function() {
           return _c("tbody", { key: publication.arxivId_s }, [
             _c("tr", [
               _c("th", { attrs: { scope: "row" } }, [
-                _vm._v(_vm._s(publication.title_s))
+                _vm._v(_vm._s(publication.response.docs.title_s))
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(publication.authorFullName_s))]),
+              _c("td", [
+                _vm._v(_vm._s(publication.response.docs.authorFullName_s))
+              ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(publication.publicationDateY_i))]),
+              _c("td", [
+                _vm._v(_vm._s(publication.response.docs.publicationDateY_i))
+              ]),
               _vm._v(" "),
               _c("td")
             ])
@@ -55193,19 +55206,19 @@ var routes = [{
   path: '/people/:person',
   component: _components_People_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
 }, {
-  path: '/software',
+  path: '/Software',
   component: _components_Software_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
   path: '/Home',
   component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  path: '/presentations',
+  path: '/Presentations',
   component: _components_Presentations_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }, {
-  path: '/publications',
+  path: '/Publications',
   component: _components_Publications_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  path: '/data',
+  path: '/Data',
   component: _components_Data_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({

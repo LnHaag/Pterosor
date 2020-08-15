@@ -17,7 +17,7 @@
                 <router-link to="/Data" class="nav-link active" >Data</</router-link>
             </li>
             <li class="nav-item">
-                <router-link to="/software" class="nav-link active">Software</router-link>
+                <router-link to="/Software" class="nav-link active">Software</router-link>
             </li>
             <li class="nav-item">
                 <router-link to="/Publications" class="nav-link active">Publications</router-link>

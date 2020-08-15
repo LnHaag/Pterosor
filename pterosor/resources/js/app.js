@@ -28,7 +28,7 @@ const routes = [
         component: People
     },
     {
-        path : '/software',
+        path : '/Software',
         component : Software
     },
     
@@ -37,15 +37,15 @@ const routes = [
         component: Home
     },
     {
-        path :'/presentations',
+        path :'/Presentations',
         component: Presentations
     },
     {
-        path :'/publications',
+        path :'/Publications',
         component: Publications
     },
     {
-        path :'/data',
+        path :'/Data',
         component: Data
     },
 

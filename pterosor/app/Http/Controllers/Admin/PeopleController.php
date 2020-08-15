@@ -45,7 +45,7 @@ class PeopleController extends Controller
             'email' => ['required'],
             'bio' => ['nullable'],
             'personnalpage' => ['nullable'],
-            'picture' => ['nullable'],
+            'picture' => ['image','nullable'],
         ]);
 
         $person= new People();
@@ -54,11 +54,13 @@ class PeopleController extends Controller
         $person->email=$validated['email'];
         $person->bio=$validated['bio'];
         $person->personnalpage=$validated['personnalpage'];
-        $picture=$request->file('picture');
+        $imagepath=$validated['picture']->store('uploads','public');
+        $person->picture=$imagepath;
+        /* $picture=$request->file('picture');
         $nom = $picture->getClientOriginalExtension();
         Image::make($picture)->resize(200,110)->save(public_path("/storage/Uploads/".$name));
         $ads->picture=$name;
-        $ads->save();
+        $ads->save(); */
     
         $person->save();
 ;
@@ -102,12 +104,14 @@ class PeopleController extends Controller
         $person->email=$request['email'];
         $person->bio=$request['bio'];
         $person->personnalpage=$request['personnalpage'];
-        $person->picture=$request['picture'];
+        $imagepath=$request['picture']->store('uploads','public');
+        $person->picture=$imagepath;
+        /* $person->picture=$request['picture'];
         $picture=$request->file('picture');
         $nom = $picture->getClientOriginalExtension();
         Image::make($picture)->resize(200,110)->save(public_path("/storage/Uploads/".$name));
         $person->picture=$name;
-        //dd($request);
+        //dd($request); */
         $person->save();
         $request->session()->flash('success','Your details have been updated!');
         return redirect()->route('admin.people.index'); 
