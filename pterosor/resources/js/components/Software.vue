@@ -32,7 +32,7 @@
 
            
             
-            fetch('https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos',{ headers: { 'Access-Control-Allow-Origin': '*'}}  )
+            fetch('https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos', {headers: { 'Access-control-origin': '*'}})
             .then(response=>response.json())
             .then((response)=>(this.softwares=response.data));          
             console.log(this.softwares);

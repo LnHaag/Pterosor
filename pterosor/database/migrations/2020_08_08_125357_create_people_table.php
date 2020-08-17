@@ -21,6 +21,7 @@ class CreatePeopleTable extends Migration
             $table->text('bio');
             $table->string('picture');
             $table->string('personnalpage');
+            $table->string('HALNumber');
             $table->timestamps();
         });
     }

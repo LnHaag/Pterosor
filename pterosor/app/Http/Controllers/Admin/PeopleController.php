@@ -46,6 +46,7 @@ class PeopleController extends Controller
             'bio' => ['nullable'],
             'personnalpage' => ['nullable'],
             'picture' => ['image','nullable'],
+            'HALNumber'=>['nullable']
         ]);
 
         $person= new People();
@@ -53,6 +54,7 @@ class PeopleController extends Controller
         $person->firstname=$validated['firstname'];
         $person->email=$validated['email'];
         $person->bio=$validated['bio'];
+        $person->HALNumber=$validated['HALNumber'];
         $person->personnalpage=$validated['personnalpage'];
         $imagepath=$validated['picture']->store('uploads','public');
         $person->picture=$imagepath;
@@ -104,8 +106,12 @@ class PeopleController extends Controller
         $person->email=$request['email'];
         $person->bio=$request['bio'];
         $person->personnalpage=$request['personnalpage'];
-        $imagepath=$request['picture']->store('uploads','public');
-        $person->picture=$imagepath;
+        $person->HALNumber=$request['HALNumber'];
+        if ($request['picture']!=null)
+        {
+            $imagepath=$request['picture']->store('uploads','public');
+            $person->picture=$imagepath;
+        }
         /* $person->picture=$request['picture'];
         $picture=$request->file('picture');
         $nom = $picture->getClientOriginalExtension();

@@ -57,7 +57,7 @@
                             <label for="bio" class="col-md-4 col-form-label text-md-right">{{ __('Biography') }}</label>
 
                             <div class="col-md-6">
-                                <input id="bio" type="text" class="form-control @error('bio') is-invalid @enderror" name="bio" value="{{ old('bio') }}" autocomplete="bio" autofocus>
+                                <textarea id="bio" type="text" class="form-control @error('bio') is-invalid @enderror" rows="4" name="bio" value="{{ old('bio') }}" autocomplete="bio" autofocus>
 
                                 @error('bio')
                                     <span class="invalid-feedback" role="alert">
@@ -88,6 +88,20 @@
                                 <input id="picture" type="file" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ old('picture') }}" autocomplete="picture" autofocus>
 
                                 @error('picture')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="HALNumber" class="col-md-4 col-form-label text-md-right">{{ __('HAL number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="HALNumber" type="text" class="form-control @error('HALNumber') is-invalid @enderror" name="name" value="{{ old('HALNumber') }}" autocomplete="HALNumber" autofocus>
+
+                                @error('HALNumber')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

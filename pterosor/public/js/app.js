@@ -1930,19 +1930,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       people: {},
-      person: {}
+      publications: {}
     };
   },
   created: function created() {
     var _this = this;
 
-    axios.get('http://localhost:8000/api/people/' + this.$route.params.person).then(function (response) {
+    axios.get("http://localhost:8000" + '/api/people/' + this.$route.params.person).then(function (response) {
       return _this.people = response.data;
+    }).then(function (response) {
+      _this.people.picture = '/storage/' + _this.people.picture;
+      var $demande = 'https://api.archives-ouvertes.fr/search/?wt=json&q=authId_i:(' + _this.people.HALNumber + ')&indent=true&fl=label_s,arxivId_s,files_s,title_s,author_s,authFullName_s,journal_s,label_bibtex,doiId_s,publicationDateY_i&group=false&start=0&rows=10000&fq=docType_s:(ART+OR+COMM+OR+OUV+OR+COUV+OR+DOUV+OR+OTHER+OR+UNDEFINED+OR+REPORT+OR+THESE+OR+HDR)&sort=publicationDateY_i%20desc';
+      fetch($demande).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        return _this.publications = response.response.docs;
+      });
     });
+  },
+  methods: {
+    getURL: function getURL() {
+      return 'https://api.archives-ouvertes.fr/search/?wt=json&q=authId_i:(' + this.people.HALNumber + ')&indent=true&fl=label_s,arxivId_s,files_s,title_s,author_s,authFullName_s,journal_s,label_bibtex,doiId_s,publicationDateY_i&group=false&start=0&rows=10000&fq=docType_s:(ART+OR+COMM+OR+OUV+OR+COUV+OR+DOUV+OR+OTHER+OR+UNDEFINED+OR+REPORT+OR+THESE+OR+HDR)&sort=publicationDateY_i%20desc';
+    }
   }
 });
 
@@ -1980,10 +2005,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      publications: {}
+      publications: []
     };
   },
   created: function created() {
@@ -1992,9 +2018,9 @@ __webpack_require__.r(__webpack_exports__);
     fetch('https://api.archives-ouvertes.fr/search/?q=europeanProject_t:pterosor&indent=true&fl=label_s,arxivId_s,files_s,title_s,author_s,authFullName_s,journal_s,label_bibtex,doiId_s,publicationDateY_i,publicationDate_tdate&group=false&start=0&rows=10000&fq=docType_s:(ART+OR+COMM+OR+OUV+OR+COUV+OR+DOUV+OR+OTHER+OR+UNDEFINED+OR+REPORT+OR+THESE+OR+HDR)&sort=publicationDate_tdate%20desc').then(function (response) {
       return response.json();
     }).then(function (response) {
-      return _this.publications = response.data;
+      return _this.publications = response.response.docs;
     });
-    console.log(this.publications);
+    console.log(JSON.stringify(this.publications));
   }
 });
 
@@ -2041,7 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
 
     fetch('https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos', {
       headers: {
-        'Access-Control-Allow-Origin': '*'
+        'Access-control-origin': '*'
       }
     }).then(function (response) {
       return response.json();
@@ -38471,19 +38497,64 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container pt-4" }, [
-    _c("h1", [
-      _vm._v(" " + _vm._s(_vm.people.firstname) + " " + _vm._s(_vm.people.name))
-    ]),
-    _c("br"),
-    _c("br"),
-    _vm._v(" "),
-    _c("h5", [_vm._v(" " + _vm._s(_vm.people.bio))]),
-    _vm._v(" "),
-    _c("img", {
-      attrs: { src: "/home/ln/Pterosor/pterosor/public/storage/people.picture" }
-    })
-  ])
+  return _c(
+    "div",
+    { staticClass: "container pt-5" },
+    [
+      _c("div", { staticClass: "row justify-content-between" }, [
+        _c("div", { staticClass: "col-7" }, [
+          _c("h1", { staticClass: "mt-2" }, [
+            _c("br"),
+            _vm._v(_vm._s(_vm.people.firstname) + " " + _vm._s(_vm.people.name))
+          ]),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("a", { staticClass: "bio" }, [
+            _vm._v(" " + _vm._s(_vm.people.bio))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-3" }, [
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: { src: _vm.people.picture }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("h3", { staticClass: "listpub" }, [
+        _vm._v(
+          _vm._s(_vm.people.firstname) +
+            " " +
+            _vm._s(_vm.people.name) +
+            "'s publications:"
+        ),
+        _c("br")
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.publications, function(publication) {
+        return _c("div", { key: publication.arxivId_s }, [
+          _c("div", { staticClass: "putitile" }, [
+            _vm._v(_vm._s(publication.title_s["0"]))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "pubauthor" }, [
+            _vm._v(_vm._s(publication.authFullName_s.join()))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "pubyear" }, [
+            _vm._v(_vm._s(publication.publicationDateY_i)),
+            _c("br")
+          ])
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38557,16 +38628,12 @@ var render = function() {
           return _c("tbody", { key: publication.arxivId_s }, [
             _c("tr", [
               _c("th", { attrs: { scope: "row" } }, [
-                _vm._v(_vm._s(publication.response.docs.title_s))
+                _vm._v(_vm._s(publication.title_s[0]))
               ]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(_vm._s(publication.response.docs.authorFullName_s))
-              ]),
+              _c("td", [_vm._v(_vm._s(publication.authFullName_s.join()))]),
               _vm._v(" "),
-              _c("td", [
-                _vm._v(_vm._s(publication.response.docs.publicationDateY_i))
-              ]),
+              _c("td", [_vm._v(_vm._s(publication.publicationDateY_i))]),
               _vm._v(" "),
               _c("td")
             ])
@@ -38590,7 +38657,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Publication Year")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } })
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Actions")])
       ])
     ])
   }
