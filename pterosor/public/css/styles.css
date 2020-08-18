@@ -1,5 +1,49 @@
-.bio{
+.bio {
     font-size: 1rem;
     color:  #343a40;
-    text align: justify;
+    text-align: justify;
+}
+
+.titre {
+    font-size : 2.75rem;
+    align-items: center;
+    margin: 3rem;
+    font-weight: 900;
+}
+
+.col-7pres {
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%;  
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 1rem;
+    margin-right: 2rem;
+}
+
+.listpub {
+    color : blue;
+    line-height: 1;
+
+}
+
+.name {
+    
+    font-weight: 700;
+}
+.pubtitle {
+   
+    font-weight: 650;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0;
+    box-sizing: unset;
+}
+
+.pubauthor {
+    font-style: italic;
+    font-size: 0.9;
+    line-height: 1;
+    font-weight: 450;
 }

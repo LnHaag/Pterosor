@@ -30,9 +30,10 @@
 
         created(){
 
-           
+            var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            var targetUrl = 'https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos';
             
-            fetch('https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos', {headers: { 'Access-control-origin': '*'}})
+            fetch('https://cors-anywhere.herokuapp.com/https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos')
             .then(response=>response.json())
             .then((response)=>(this.softwares=response.data));          
             console.log(this.softwares);

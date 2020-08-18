@@ -1942,6 +1942,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1952,7 +1958,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    axios.get("http://localhost:8000" + '/api/people/' + this.$route.params.person).then(function (response) {
+    axios.get('/api/people/' + this.$route.params.person).then(function (response) {
       return _this.people = response.data;
     }).then(function (response) {
       _this.people.picture = '/storage/' + _this.people.picture;
@@ -2065,11 +2071,9 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    fetch('https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos', {
-      headers: {
-        'Access-control-origin': '*'
-      }
-    }).then(function (response) {
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    var targetUrl = 'https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos';
+    fetch('https://cors-anywhere.herokuapp.com/https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos').then(function (response) {
       return response.json();
     }).then(function (response) {
       return _this.softwares = response.data;
@@ -2077,6 +2081,43 @@ __webpack_require__.r(__webpack_exports__);
     console.log(this.softwares);
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/page.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/page.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 
@@ -38445,43 +38486,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c& ***!
-  \*******************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("a", [
-        _vm._v(
-          "\n    Catalys and solar cell technologies are under pinned by a fundamental process: that of exciting systems \n    to a higher energy level than the groundstate. Deninganeective methodt o achieve this that also provide \n    saccurate energies of the excited states is of ten a challenge. The EU-funded PTEROSOR project will tackle \n    this fundamental problem using mathematical techniques. The researchers 'novel approach forme asuring \n    the energies of excited states and dening wave functions in molecular systems will hinge on the use of\n    a general class of Hamiltonians with parity-time(PT) symmetry. The gateway between ground and excited \n    states will be provided by..."
-        )
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/People.vue?vue&type=template&id=71fffd8c&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/People.vue?vue&type=template&id=71fffd8c& ***!
@@ -38497,64 +38501,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container pt-5" },
-    [
-      _c("div", { staticClass: "row justify-content-between" }, [
-        _c("div", { staticClass: "col-7" }, [
-          _c("h1", { staticClass: "mt-2" }, [
-            _c("br"),
-            _vm._v(_vm._s(_vm.people.firstname) + " " + _vm._s(_vm.people.name))
-          ]),
+  return _c("div", { staticClass: "container pt-5" }, [
+    _c("div", { staticClass: "row justify-content-between" }, [
+      _c("div", { staticClass: "col-7" }, [
+        _c("h1", { staticClass: "name" }, [
           _c("br"),
+          _vm._v(_vm._s(_vm.people.firstname) + " " + _vm._s(_vm.people.name))
+        ]),
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("a", { staticClass: "bio" }, [_vm._v(" " + _vm._s(_vm.people.bio))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-3" }, [
+        _c("br"),
+        _c("br"),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: { src: _vm.people.picture }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "mt-4" },
+      [
+        _c("h2", { staticClass: "listpub" }, [
+          _vm._v(
+            _vm._s(_vm.people.firstname) +
+              " " +
+              _vm._s(_vm.people.name) +
+              "'s publications:"
+          ),
           _c("br"),
-          _vm._v(" "),
-          _c("a", { staticClass: "bio" }, [
-            _vm._v(" " + _vm._s(_vm.people.bio))
-          ])
+          _c("br")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-3" }, [
-          _c("br"),
-          _c("br"),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "img-fluid",
-            attrs: { src: _vm.people.picture }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("h3", { staticClass: "listpub" }, [
-        _vm._v(
-          _vm._s(_vm.people.firstname) +
-            " " +
-            _vm._s(_vm.people.name) +
-            "'s publications:"
-        ),
-        _c("br")
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.publications, function(publication) {
-        return _c("div", { key: publication.arxivId_s }, [
-          _c("div", { staticClass: "putitile" }, [
-            _vm._v(_vm._s(publication.title_s["0"]))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "pubauthor" }, [
-            _vm._v(_vm._s(publication.authFullName_s.join()))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "pubyear" }, [
-            _vm._v(_vm._s(publication.publicationDateY_i)),
+        _vm._l(_vm.publications, function(publication) {
+          return _c("div", { key: publication.arxivId_s }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "d-flex flex-row justify-content-between align-items-center"
+              },
+              [
+                _c("div", { staticClass: "pubtitle" }, [
+                  _vm._v(_vm._s(publication.title_s["0"]))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-secondary btn-sm mr-5",
+                    attrs: {
+                      href: "https://arxiv.org/pdf/" + publication.arxivId_s,
+                      role: "button"
+                    }
+                  },
+                  [_vm._v("Read")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "pubauthor" }, [
+              _vm._v(_vm._s(publication.authFullName_s.join()))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "pubyear" }, [
+              _vm._v(
+                "Publication year: " + _vm._s(publication.publicationDateY_i)
+              )
+            ]),
             _c("br")
           ])
-        ])
-      })
-    ],
-    2
-  )
+        })
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38619,24 +38647,48 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c(
-      "table",
-      { staticClass: "table table-borderless" },
+      "div",
+      { staticClass: "pt-4" },
       [
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.publications, function(publication) {
-          return _c("tbody", { key: publication.arxivId_s }, [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }, [
-                _vm._v(_vm._s(publication.title_s[0]))
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(publication.authFullName_s.join()))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(publication.publicationDateY_i))]),
-              _vm._v(" "),
-              _c("td")
-            ])
+          return _c("div", { key: publication.arxivId_s }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "d-flex flex-row justify-content-between align-items-center pt-6"
+              },
+              [
+                _c("div", { staticClass: "pubtitle" }, [
+                  _vm._v(_vm._s(publication.title_s["0"]))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-secondary btn-sm mr-5",
+                    attrs: {
+                      href: "https://arxiv.org/pdf/" + publication.arxivId_s,
+                      role: "button"
+                    }
+                  },
+                  [_vm._v("Read")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "pubauthor" }, [
+              _vm._v(_vm._s(publication.authFullName_s.join()))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "pubyear" }, [
+              _vm._v(
+                "Publication year: " + _vm._s(publication.publicationDateY_i)
+              )
+            ]),
+            _c("br")
           ])
         })
       ],
@@ -38649,15 +38701,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Title")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Authors")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Publication Year")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Actions")])
+    return _c("div", { staticClass: "row justify-content-around" }, [
+      _c("div", { staticClass: "col-7" }, [
+        _c("br"),
+        _c("br"),
+        _c("br"),
+        _c("h1", { staticClass: "name" }, [
+          _vm._v("Pterosor's publications: "),
+          _c("br")
+        ]),
+        _c("br"),
+        _c("br")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-3 mr-5" }, [
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: {
+            src: "https://www.irsamc.ups-tlse.fr/loos/logo/PTEROSOR.jpg"
+          }
+        })
       ])
     ])
   }
@@ -38718,6 +38781,89 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/page.vue?vue&type=template&id=5a00d44c&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/page.vue?vue&type=template&id=5a00d44c& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "container my-3" }, [
+      _c("h1", { staticClass: "titre" }, [_vm._v(" The Pterosor Project")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row justify-content-around mt-2 align-items-center" },
+        [
+          _c("div", { staticClass: "col-3 mr-6 mt-4" }, [
+            _c("img", {
+              staticClass: "img-fluid",
+              attrs: {
+                src: "https://www.irsamc.ups-tlse.fr/loos/logo/PTEROSOR.jpg",
+                width: "100%/"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-7pres" }, [
+            _vm._v(
+              "\n            Catalys and solar cell technologies are underpinned by a fundamental process: that of exciting systems \n            to a higher energy level than the groundstate. Defining an effective method to achieve this that also provides \n            accurate energies of the excited states is often a challenge. The EU-funded PTEROSOR project will tackle \n            this fundamental problem using mathematical techniques. The researchers'novel approach for measuring \n            the energies of excited states and dening wave functions in molecular systems will hinge on the use of\n            a general class of Hamiltonians with parity-time(PT) symmetry. The gateway between ground and excited \n            states will be provided by exceptional points which lie at the boundary between broken and unbroken PT-symmetric \n            regions.\n        "
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-flex justify-content-around p-5" }, [
+        _c("img", {
+          attrs: {
+            src: "https://crnl.univ-lyon1.fr/files/documents/Accueil/erc.jpg",
+            width: "8%"
+          }
+        }),
+        _vm._v(" "),
+        _c("img", {
+          attrs: {
+            src:
+              "https://upload.wikimedia.org/wikipedia/commons/8/84/European_Commission.svg",
+            width: "8%"
+          }
+        }),
+        _vm._v(" "),
+        _c("img", {
+          attrs: {
+            src:
+              "https://www.univ-tlse3.fr/medias/photo/logo-lcpq_1578579199871-jpg",
+            width: "8%"
+          }
+        })
       ])
     ])
   }
@@ -55246,7 +55392,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
 /* harmony import */ var _components_Software_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Software.vue */ "./resources/js/components/Software.vue");
 /* harmony import */ var _components_Publications_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Publications.vue */ "./resources/js/components/Publications.vue");
-/* harmony import */ var _components_Home_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue");
+/* harmony import */ var _components_page_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/page.vue */ "./resources/js/components/page.vue");
 /* harmony import */ var _components_Presentations_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Presentations.vue */ "./resources/js/components/Presentations.vue");
 /* harmony import */ var _components_People_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/People.vue */ "./resources/js/components/People.vue");
 /* harmony import */ var _components_Data_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Data.vue */ "./resources/js/components/Data.vue");
@@ -55276,8 +55422,9 @@ var routes = [{
   path: '/Software',
   component: _components_Software_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
-  path: '/Home',
-  component: _components_Home_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+  path: '/',
+  component: _components_page_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+  name: 'page'
 }, {
   path: '/Presentations',
   component: _components_Presentations_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
@@ -55302,7 +55449,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('Home', __webpack_require__(/*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
+/* Vue.component('page', require('./components/page.vue')); */
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -55311,6 +55459,10 @@ Vue.component('Home', __webpack_require__(/*! ./components/Home.vue */ "./resour
 
 var app = new Vue({
   el: '#app',
+
+  /* components: {
+      page
+  }, */
   router: router
 });
 
@@ -55409,59 +55561,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Data_vue_vue_type_template_id_0e428195___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Data_vue_vue_type_template_id_0e428195___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/Home.vue":
-/*!******************************************!*\
-  !*** ./resources/js/components/Home.vue ***!
-  \******************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=f2b6376c& */ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Home.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/Home.vue?vue&type=template&id=f2b6376c& ***!
-  \*************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=template&id=f2b6376c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -55722,6 +55821,78 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Software_vue_vue_type_template_id_80d968dc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Software_vue_vue_type_template_id_80d968dc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/page.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/page.vue ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _page_vue_vue_type_template_id_5a00d44c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page.vue?vue&type=template&id=5a00d44c& */ "./resources/js/components/page.vue?vue&type=template&id=5a00d44c&");
+/* harmony import */ var _page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page.vue?vue&type=script&lang=js& */ "./resources/js/components/page.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _page_vue_vue_type_template_id_5a00d44c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _page_vue_vue_type_template_id_5a00d44c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/page.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/page.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/page.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./page.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/page.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/page.vue?vue&type=template&id=5a00d44c&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/page.vue?vue&type=template&id=5a00d44c& ***!
+  \*************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_template_id_5a00d44c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./page.vue?vue&type=template&id=5a00d44c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/page.vue?vue&type=template&id=5a00d44c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_template_id_5a00d44c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_page_vue_vue_type_template_id_5a00d44c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

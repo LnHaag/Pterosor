@@ -3,7 +3,8 @@
     
     @section('content')
     <div id="app">
-        <ul class="navbar navbar-dark bg-primary nav nav-pills justify-content-around">
+        <header>
+        <ul class="navbar bg-primary nav nav-pills justify-content-around">
             <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">People</a>
                  <div class="dropdown-menu">
@@ -25,13 +26,18 @@
             <li class="nav-item">
                 <router-link to="/Presentations" class="nav-link active" >Presentations</router-link>
             </li>
-           <!--  <li class="nav-item">
-                <a class="nav-link active" href="#">Events</a>
-            </li> -->
         </ul> 
         <router-view></router-view>
+        </header>
+        
+        
+        <main>
+        
+        </main>
+        
     </div> 
 @endsection 
+
 
 
 

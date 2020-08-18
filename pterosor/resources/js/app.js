@@ -11,7 +11,7 @@ import storeData from "./store/index"
 
 import Software from './components/Software.vue';
 import Publications from './components/Publications.vue';
-import Home from './components/Home.vue';
+import page from './components/page.vue';
 import Presentations from './components/Presentations.vue';
 import People from './components/People.vue';
 import Data from  './components/Data.vue';
@@ -32,10 +32,12 @@ const routes = [
         component : Software
     },
     
-    {
-        path :'/Home',
-        component: Home
-    },
+     {
+        path :'/',
+        component: page,
+        name: 'page'
+    }, 
+    
     {
         path :'/Presentations',
         component: Presentations
@@ -65,7 +67,7 @@ const router = new VueRouter({routes});
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('Home', require('./components/Home.vue')); 
+/* Vue.component('page', require('./components/page.vue')); */ 
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -75,5 +77,10 @@ Vue.component('Home', require('./components/Home.vue'));
 
 const app = new Vue({
     el: '#app',
+    
+    /* components: {
+        page
+    }, */
     router : router,
+        
 });

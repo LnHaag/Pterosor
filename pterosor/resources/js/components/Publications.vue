@@ -1,24 +1,24 @@
 <template>
     <div class="container">
-        <table class="table table-borderless">
-            <thead>
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Authors</th>
-                    <th scope="col">Publication Year</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-           
-             <tbody v-for="publication in publications" :key="publication.arxivId_s" >
-                <tr >
-                    <th scope="row">{{ publication.title_s[0]}}</th>
-                    <td>{{publication.authFullName_s.join()}}</td>
-                    <td>{{publication.publicationDateY_i}}</td>
-                    <td></td>
-                </tr> 
-            </tbody>
-        </table>
+        <div class="pt-4">
+             <div class="row justify-content-around">
+                <div class='col-7'>
+                    <br><br><br><h1 class="name">Pterosor's publications: <br></h1><br><br>
+                </div>
+                <div class="col-3 mr-5">
+                    <img class="img-fluid" src="https://www.irsamc.ups-tlse.fr/loos/logo/PTEROSOR.jpg" />
+                </div>
+            </div>
+            
+            <div v-for="publication in publications" :key="publication.arxivId_s">
+                <div class= "d-flex flex-row justify-content-between align-items-center pt-6">
+                <div class="pubtitle">{{publication.title_s['0']}}</div>
+                <a v-bind:href="'https://arxiv.org/pdf/'+publication.arxivId_s" class="btn btn-secondary btn-sm mr-5" role="button">Read</a>
+                </div>
+                <div class="pubauthor">{{publication.authFullName_s.join()}}</div>
+                <div class="pubyear">Publication year: {{publication.publicationDateY_i}}</div><br>
+            </div>
+        </div>
     </div>
 </template>
 

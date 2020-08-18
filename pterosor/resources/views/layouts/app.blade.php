@@ -28,7 +28,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <!-- {{ config('app.name', 'Laravel') }} -->
-                    <img src="https://www.univ-tlse3.fr/medias/photo/logo-lcpq_1578579199871-jpg" alt="pterosor" width="60%"> 
+                    <img src="https://www.univ-tlse3.fr/medias/photo/logo-lcpq_1578579199871-jpg" alt="LCP" width="60%"> 
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
