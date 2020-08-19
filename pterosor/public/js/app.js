@@ -1948,6 +1948,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1969,10 +1970,11 @@ __webpack_require__.r(__webpack_exports__);
         return _this.publications = response.response.docs;
       });
     });
+    console.log(this.people);
   },
   methods: {
-    getURL: function getURL() {
-      return 'https://api.archives-ouvertes.fr/search/?wt=json&q=authId_i:(' + this.people.HALNumber + ')&indent=true&fl=label_s,arxivId_s,files_s,title_s,author_s,authFullName_s,journal_s,label_bibtex,doiId_s,publicationDateY_i&group=false&start=0&rows=10000&fq=docType_s:(ART+OR+COMM+OR+OUV+OR+COUV+OR+DOUV+OR+OTHER+OR+UNDEFINED+OR+REPORT+OR+THESE+OR+HDR)&sort=publicationDateY_i%20desc';
+    getpagepeople: function getpagepeople() {
+      this.$router.push('/people/:');
     }
   }
 });
@@ -1988,7 +1990,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2061,7 +2062,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2071,12 +2071,12 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    var targetUrl = 'https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos';
+    /* var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    var targetUrl = 'https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos'; */
     fetch('https://cors-anywhere.herokuapp.com/https://git.irsamc.ups-tlse.fr/api/v1/orgs/pterosor/repos').then(function (response) {
       return response.json();
     }).then(function (response) {
-      return _this.softwares = response.data;
+      return _this.softwares = response;
     });
     console.log(this.softwares);
   }
@@ -38469,15 +38469,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", [
-        _vm._v(
-          " Although we are hard working for it, we have no datas to share yet !"
-        ),
-        _c("br"),
-        _vm._v("\n     Results coming soon !")
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "row justify-content-center align-items-center" },
+      [
+        _c("div", { staticClass: "col-8 justify-content-center" }, [
+          _c("div", { staticClass: "annonce" }, [
+            _vm._v(
+              " Although we are hard working for it, we have no datas to share yet ! Results coming soon !"
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -38553,17 +38557,33 @@ var render = function() {
                   _vm._v(_vm._s(publication.title_s["0"]))
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-secondary btn-sm mr-5",
-                    attrs: {
-                      href: "https://arxiv.org/pdf/" + publication.arxivId_s,
-                      role: "button"
-                    }
-                  },
-                  [_vm._v("Read")]
-                )
+                publication.arxivId_s
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-secondary btn-sm mr-7",
+                        attrs: {
+                          href:
+                            "https://arxiv.org/pdf/" + publication.arxivId_s,
+                          role: "button"
+                        }
+                      },
+                      [_vm._v("Read")]
+                    )
+                  : publication.doiId_s
+                  ? _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-secondary btn-sm mr-7",
+                        attrs: {
+                          href: "https://dx.doi.org/" + publication.doiId_s,
+                          target: "_blank",
+                          role: "button"
+                        }
+                      },
+                      [_vm._v("Read")]
+                    )
+                  : _vm._e()
               ]
             ),
             _vm._v(" "),
@@ -38573,7 +38593,10 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "pubyear" }, [
               _vm._v(
-                "Publication year: " + _vm._s(publication.publicationDateY_i)
+                "Publication year: " +
+                  _vm._s(publication.publicationDateY_i) +
+                  " " +
+                  _vm._s(publication.doiId_s)
               )
             ]),
             _c("br")
@@ -38613,15 +38636,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", [
-        _vm._v(" No presentations yet."),
-        _c("br"),
-        _vm._v(
-          "\n    Subscribe to our newsletter to be informed of our next presentations!\n    "
-        )
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "row justify-content-center align-items-center" },
+      [
+        _c("div", { staticClass: "col-8 justify-content-center" }, [
+          _c("div", { staticClass: "annonce" }, [
+            _vm._v(
+              "No presentations yet.Subscribe to our newsletter to be informed of our next presentations! "
+            )
+          ])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -38746,41 +38773,65 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "table",
-      { staticClass: "table table-borderless" },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._l(_vm.softwares, function(software) {
-          return _c("tbody", { key: software.id }, [
-            _c("tr", [
-              _c("th", { attrs: { scope: "row" } }),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(software.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(software.description))])
-            ])
+  return _c(
+    "div",
+    { staticClass: "container pt-4" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.softwares, function(software) {
+        return _c("div", { key: software.id }, [
+          _c("div", {}, [
+            _c("br"),
+            _c("br"),
+            _c("div", { staticClass: "pubtitle" }, [
+              _vm._v(_vm._s(software.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "pubauthor" }, [
+              _vm._v(_vm._s(software.description))
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-secondary btn-sm p-6",
+                attrs: { href: "", role: "button" }
+              },
+              [_vm._v("Go to git")]
+            )
           ])
-        })
-      ],
-      2
-    )
-  ])
+        ])
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } })
+    return _c("div", { staticClass: "row justify-content-around" }, [
+      _c("div", { staticClass: "col-7" }, [
+        _c("br"),
+        _c("br"),
+        _c("br"),
+        _c("h1", { staticClass: "name" }, [
+          _vm._v("Pterosor's softwares: "),
+          _c("br")
+        ]),
+        _c("br"),
+        _c("br")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-3 mr-5" }, [
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: {
+            src: "https://www.irsamc.ups-tlse.fr/loos/logo/PTEROSOR.jpg"
+          }
+        })
       ])
     ])
   }

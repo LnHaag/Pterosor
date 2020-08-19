@@ -47,3 +47,13 @@
     line-height: 1;
     font-weight: 450;
 }
+
+.annonce {
+    font-size: 1.6rem;
+    text-align: center;
+    border-style: groove;
+    border-width: 10px;
+    border-color:  #3490dc;
+    margin: 60px;
+    padding: 50px;
+}
