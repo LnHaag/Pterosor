@@ -8,11 +8,11 @@
                 <img class="img-fluid" src="https://www.irsamc.ups-tlse.fr/loos/logo/PTEROSOR.jpg" />
             </div>
         </div>
-        <div v-for="software in softwares" :key="software.id">
-            <div class= "">
-                <br><br><div class="pubtitle">{{software.name}}</div>
-                <div class="pubauthor">{{software.description}}</div>
-                <a href="" class="btn btn-secondary btn-sm p-6" role="button">Go to git</a>
+        <div v-for="software in softwares" :key="software.id"><br><br><br>
+            <div class= "row">
+                <div class="col-2 softitle">{{software.name}}</div>
+                <div class="col-8 softdes">{{software.description}}</div>
+                <a v-bind:href=software.html_url  class=" col-1 btn btn-secondary btn-sm p-6 align-self-start" target="_blank" role="button">Go to git</a>
             </div>
          </div>
     </div>

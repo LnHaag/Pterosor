@@ -12,10 +12,10 @@
         <div class="mt-4">
         <h2 class="listpub">{{people.firstname}} {{people.name}}'s publications:<br><br></h2>
         <div v-for="publication in publications" :key="publication.arxivId_s">
-            <div class= "d-flex flex-row justify-content-between align-items-center">
+            <div class= "d-flex flex-row justify-content-between align-items-center pr-5">
             <div class="pubtitle">{{publication.title_s['0']}}</div>
-            <a v-if ="publication.arxivId_s" v-bind:href="'https://arxiv.org/pdf/'+publication.arxivId_s" class="btn btn-secondary btn-sm mr-7" role="button">Read</a>
-            <a v-else-if="publication.doiId_s" v-bind:href="'https://dx.doi.org/'+publication.doiId_s" target="_blank" class="btn btn-secondary btn-sm mr-7" role="button">Read</a>
+            <a v-if ="publication.arxivId_s" v-bind:href="'https://arxiv.org/pdf/'+publication.arxivId_s" class="btn btn-secondary btn-sm" role="button">Read</a>
+            <a v-else-if="publication.doiId_s" v-bind:href="'https://dx.doi.org/'+publication.doiId_s" target="_blank" class="btn btn-secondary btn-sm" role="button">Read</a>
            </div> 
             <div class="pubauthor">{{publication.authFullName_s.join()}}</div>
             <div class="pubyear">Publication year: {{publication.publicationDateY_i}} {{publication.doiId_s}}</div><br>
@@ -34,10 +34,15 @@
             return{
                 people: {},
                 publications: {}
-            }
+                }
+            },
+        watch: {
+
+            '$route' (to, from){ location.reload();}
+
         },
 
-        created ()
+       mounted ()
         {
             
             axios.get('/api/people/'+this.$route.params.person)
@@ -48,17 +53,8 @@
             fetch($demande).then(response=>response.json())
             .then(response=>this.publications=response.response.docs); });
             console.log(this.people);  
-        },
-
-        methods:{
-
-        getpagepeople()
-        {
-            this.$router.push('/people/:')
+        
         }
-         }
-
-
 
     }
 </script>

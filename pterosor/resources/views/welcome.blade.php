@@ -9,8 +9,7 @@
             <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">People</a>
                  <div class="dropdown-menu">
                 @foreach($people as $person)
-                <router-link to="/people/{{$person->id}}" class="dropdown-item">{{ $person->name }}</router-link>
-                
+                <router-link to="/people/{{$person->id}}" class="dropdown-item">{{ $person->name }}</router-link> 
                 @endforeach
                 </div>  
             </li>

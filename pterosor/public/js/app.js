@@ -1956,7 +1956,12 @@ __webpack_require__.r(__webpack_exports__);
       publications: {}
     };
   },
-  created: function created() {
+  watch: {
+    '$route': function $route(to, from) {
+      location.reload();
+    }
+  },
+  mounted: function mounted() {
     var _this = this;
 
     axios.get('/api/people/' + this.$route.params.person).then(function (response) {
@@ -1971,11 +1976,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
     console.log(this.people);
-  },
-  methods: {
-    getpagepeople: function getpagepeople() {
-      this.$router.push('/people/:');
-    }
   }
 });
 
@@ -38550,7 +38550,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "d-flex flex-row justify-content-between align-items-center"
+                  "d-flex flex-row justify-content-between align-items-center pr-5"
               },
               [
                 _c("div", { staticClass: "pubtitle" }, [
@@ -38561,7 +38561,7 @@ var render = function() {
                   ? _c(
                       "a",
                       {
-                        staticClass: "btn btn-secondary btn-sm mr-7",
+                        staticClass: "btn btn-secondary btn-sm",
                         attrs: {
                           href:
                             "https://arxiv.org/pdf/" + publication.arxivId_s,
@@ -38574,7 +38574,7 @@ var render = function() {
                   ? _c(
                       "a",
                       {
-                        staticClass: "btn btn-secondary btn-sm mr-7",
+                        staticClass: "btn btn-secondary btn-sm",
                         attrs: {
                           href: "https://dx.doi.org/" + publication.doiId_s,
                           target: "_blank",
@@ -38781,22 +38781,29 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.softwares, function(software) {
         return _c("div", { key: software.id }, [
-          _c("div", {}, [
-            _c("br"),
-            _c("br"),
-            _c("div", { staticClass: "pubtitle" }, [
+          _c("br"),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-2 softitle" }, [
               _vm._v(_vm._s(software.name))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "pubauthor" }, [
+            _c("div", { staticClass: "col-8 softdes" }, [
               _vm._v(_vm._s(software.description))
             ]),
             _vm._v(" "),
             _c(
               "a",
               {
-                staticClass: "btn btn-secondary btn-sm p-6",
-                attrs: { href: "", role: "button" }
+                staticClass:
+                  " col-1 btn btn-secondary btn-sm p-6 align-self-start",
+                attrs: {
+                  href: software.html_url,
+                  target: "_blank",
+                  role: "button"
+                }
               },
               [_vm._v("Go to git")]
             )
